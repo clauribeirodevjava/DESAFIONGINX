@@ -1,0 +1,49 @@
+version: '3'
+services:
+    app:
+        image: claudemirribeiro/app:latest
+        container_name: app
+        ports:
+            - "3000:3000"
+        entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
+        networks:
+            - node-network
+        volumes:
+            - ./node:/usr/src/app
+        tty: true
+        depends_on:
+            - db
+
+    db:
+        image: claudemirribeiro/db:latest
+        container_name: db
+        ports:
+            - "3306:3036"
+        environment:
+            MYSQL_ROOT_PASSWORD: RootPassword
+            MYSQL_DATABASE: nodedb
+            MYSQL_USER: MainUser
+            MYSQL_PASSWORD: MainPassword
+        #command: --innodb-use-native-aio=0
+        #command: sudo chmod -R 777 ./mysql
+        restart: always
+        tty: true
+        volumes:
+        - .mysl:/var/lib/mysql
+        networks:
+            - node-network
+    nginx:
+        image: claudemirribeiro/nginxreverso 
+        container_name: nginxreverso
+        ports:
+            - "80:80"
+        networks:
+            - node-network
+        depends_on:
+            - db
+        
+
+networks:
+    node-network:
+        driver: bridge
+        
