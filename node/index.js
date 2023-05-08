@@ -10,16 +10,16 @@ const connection = mysql.createConnection({
     database: 'nodedb'
 });
 
-// connection.connect((err) => {
-//     if (err) {
-//         console.error('Erro ao conectar ao banco de dados: ' + err.stack);
-//         return;
-//     }
+ connection.connect((err) => {
+     if (err) {
+         console.error('Erro ao conectar ao banco de dados: ' + err.stack);
+         return;
+     }
 
-//     console.log('Conexão com o banco de dados estabelecida com sucesso!');
-// });
+     console.log('Conexão com o banco de dados estabelecida com sucesso!');
+ });
 app.get('/', (req, res) => {
-    /*
+    
     const sql = 'SELECT name FROM people';
 
     connection.query(sql, (err, results) => {
@@ -34,8 +34,8 @@ app.get('/', (req, res) => {
         res.send(html);
        
     });
-    */
-    res.send("oi");
+    
+   // res.send("oi");
 });
 
 app.listen(3000, () => {

@@ -5,4 +5,6 @@ CREATE TABLE people (
     primary key(id)
    
 );
--- INSERT INTO user (is_active, created_date) VALUES (true,"2018-07-21");
+INSERT INTO people (name) VALUES ("Athos");
+INSERT INTO people (name) VALUES ("Porthos");
+INSERT INTO people (name) VALUES ("Aramis");
