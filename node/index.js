@@ -2,7 +2,7 @@ const express = require('express');
 const mysql = require('mysql');
 
 const app = express();
-/*
+
 const connection = mysql.createConnection({
     host: 'db',
     user: 'root',
@@ -10,15 +10,14 @@ const connection = mysql.createConnection({
     database: 'nodedb'
 });
 
-connection.connect((err) => {
-    if (err) {
-        console.error('Erro ao conectar ao banco de dados: ' + err.stack);
-        return;
-    }
+// connection.connect((err) => {
+//     if (err) {
+//         console.error('Erro ao conectar ao banco de dados: ' + err.stack);
+//         return;
+//     }
 
-    console.log('Conexão com o banco de dados estabelecida com sucesso!');
-});
-*/
+//     console.log('Conexão com o banco de dados estabelecida com sucesso!');
+// });
 app.get('/', (req, res) => {
     /*
     const sql = 'SELECT name FROM people';
